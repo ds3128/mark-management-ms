@@ -1,0 +1,22 @@
+services:
+  user-db:
+    container_name: user-db
+    image: postgres:16
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: user_spring
+      POSTGRES_PASSWORD: user_spring
+      POSTGRES_DB: user_spring
+
+  pgadmin_user:
+    container_name: pgadmin_user
+    image: 'dpage/pgadmin4:latest'
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dariussteves@yahoo.fr
+      PGADMIN_DEFAULT_PASSWORD: 12345
+      PGADMIN_LISTEN_PORT: 5050
+    ports:
+      - '5050:5050'

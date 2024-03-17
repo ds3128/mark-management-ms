@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+#  backend:
+#    container_name: student_back
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - database
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:mariadb://database:3306/student_management?createDatabaseIfNotExist=true
+#      - SPRING_DATASOURCE_USERNAME=root
+#      - SPRING_DATASOURCE_PASSWORD=
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#    command: mvn spring-boot:run
+
+  field-database:
+    container_name: field-database
+    image: mysql:latest
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: field-db
+      MYSQL_USER: ds3128
+      MYSQL_PASSWORD: 12345
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - '9999:80'
+    environment:
+      PMA_HOST: field-database
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+
+volumes:
+  mysql_data:

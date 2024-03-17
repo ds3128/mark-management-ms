@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  course-database:
+    container_name: course-database
+    image: postgres:16
+    restart: always
+    ports:
+      - '5434:5432'
+    environment:
+      POSTGRES_USER: course_spring
+      POSTGRES_PASSWORD: course_spring
+      POSTGRES_DB: course_spring
+
+  pgadmin_course:
+    container_name: pgadmin_course
+    image: 'dpage/pgadmin4:latest'
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dariussteves44@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+      PGADMIN_LISTEN_PORT: 5055
+    ports:
+      - '5055:5050'
