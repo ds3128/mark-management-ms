@@ -11,13 +11,9 @@ services:
       POSTGRES_PASSWORD: course_spring
       POSTGRES_DB: course_spring
 
-  pgadmin_course:
-    container_name: pgadmin_course
-    image: 'dpage/pgadmin4:latest'
+  adminer-course:
+    container_name: adminer-course
+    image: adminer:4.8.0-standalone
     restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: dariussteves44@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: 1234
-      PGADMIN_LISTEN_PORT: 5055
     ports:
-      - '5055:5050'
+      - "9081:8080"
